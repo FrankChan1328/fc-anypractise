@@ -1,0 +1,27 @@
+使用Jvisualvm查看运行情况
+
+线程dump信息如下：
+
+"Thread B" #12 prio=5 os_prio=0 tid=0x00000000198bd800 nid=0x17ec waiting for monitor entry [0x000000001a30e000]
+   java.lang.Thread.State: BLOCKED (on object monitor)
+        at main.java.com.poplar.memory.A.method(DeadLock.java:22)
+        - waiting to lock <0x00000000d81187e8> (a java.lang.Class for main.java.com.poplar.memory.A)
+        at main.java.com.poplar.memory.B.method(DeadLock.java:38)
+        - locked <0x00000000d8118850> (a java.lang.Class for main.java.com.poplar.memory.B)
+        at main.java.com.poplar.memory.DeadLock$$Lambda$2/1023892928.run(Unknown Source)
+        at java.lang.Thread.run(Thread.java:748)
+
+   Locked ownable synchronizers:
+        - None
+
+"Thread A" #11 prio=5 os_prio=0 tid=0x000000001989f000 nid=0x1518 waiting for monitor entry [0x000000001a20f000]
+   java.lang.Thread.State: BLOCKED (on object monitor)
+        at main.java.com.poplar.memory.B.method(DeadLock.java:35)
+        - waiting to lock <0x00000000d8118850> (a java.lang.Class for main.java.com.poplar.memory.B)
+        at main.java.com.poplar.memory.A.method(DeadLock.java:25)
+        - locked <0x00000000d81187e8> (a java.lang.Class for main.java.com.poplar.memory.A)
+        at main.java.com.poplar.memory.DeadLock$$Lambda$1/1096979270.run(Unknown Source)
+        at java.lang.Thread.run(Thread.java:748)
+
+   Locked ownable synchronizers:
+        - None
