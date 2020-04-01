@@ -1,7 +1,7 @@
 package thread.blockingqueue.consumer;
 
-import thread.blockingqueue.Toast;
-import thread.blockingqueue.ToastQueue;
+import thread.blockingqueue.queue.Toast;
+import thread.blockingqueue.queue.ToastQueue;
 
 public class Eater implements Runnable {
 	private ToastQueue finishedQueue;
@@ -19,14 +19,14 @@ public class Eater implements Runnable {
 				// Verify that the toast is coming in order,
 				// and that all pieces are getting jammed:
 				if (t.getId() != counter++ || t.getStatus() != Toast.Status.JAMMED) {
-					System.out.print(">>>> Error: " + t);
+					System.out.println(">>>> Error: " + t);
 					System.exit(1);
 				} else
-					System.out.print("Chomp! " + t);
+					System.out.println("Chomp! " + t);
 			}
 		} catch (InterruptedException e) {
-			System.out.print("Eater interrupted");
+			System.out.println("Eater interrupted");
 		}
-		System.out.print("Eater off");
+		System.out.println("Eater off");
 	}
 }

@@ -1,7 +1,7 @@
 package thread.blockingqueue.producer;
 
-import thread.blockingqueue.Toast;
-import thread.blockingqueue.ToastQueue;
+import thread.blockingqueue.queue.Toast;
+import thread.blockingqueue.queue.ToastQueue;
 
 public class Butterer implements Runnable {
 	private ToastQueue dryQueue, butteredQueue;
@@ -17,12 +17,12 @@ public class Butterer implements Runnable {
 				// 阻塞直到下一片toast是available:
 				Toast t = dryQueue.take();
 				t.butter();
-				System.out.print(t);
+				System.out.println(t);
 				butteredQueue.put(t);
 			}
 		} catch (InterruptedException e) {
-			System.out.print("Butterer interrupted");
+			System.out.println("Butterer interrupted");
 		}
-		System.out.print("Butterer off");
+		System.out.println("Butterer off");
 	}
 }

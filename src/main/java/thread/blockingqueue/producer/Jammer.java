@@ -1,7 +1,7 @@
 package thread.blockingqueue.producer;
 
-import thread.blockingqueue.Toast;
-import thread.blockingqueue.ToastQueue;
+import thread.blockingqueue.queue.Toast;
+import thread.blockingqueue.queue.ToastQueue;
 
 public class Jammer implements Runnable {
 	private ToastQueue butteredQueue, finishedQueue;
@@ -17,12 +17,12 @@ public class Jammer implements Runnable {
 				// Blocks until next piece of toast is available:
 				Toast t = butteredQueue.take();
 				t.jam();
-				System.out.print(t);
+				System.out.println(t);
 				finishedQueue.put(t);
 			}
 		} catch (InterruptedException e) {
-			System.out.print("Jammer interrupted");
+			System.out.println("Jammer interrupted");
 		}
-		System.out.print("Jammer off");
+		System.out.println("Jammer off");
 	}
 }

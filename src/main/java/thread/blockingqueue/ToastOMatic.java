@@ -8,6 +8,7 @@ import thread.blockingqueue.consumer.Eater;
 import thread.blockingqueue.producer.Butterer;
 import thread.blockingqueue.producer.Jammer;
 import thread.blockingqueue.producer.Toaster;
+import thread.blockingqueue.queue.ToastQueue;
 
 public class ToastOMatic {
 	public static void main(String[] args) throws Exception {

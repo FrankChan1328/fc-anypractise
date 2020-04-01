@@ -3,8 +3,8 @@ package thread.blockingqueue.producer;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
-import thread.blockingqueue.Toast;
-import thread.blockingqueue.ToastQueue;
+import thread.blockingqueue.queue.Toast;
+import thread.blockingqueue.queue.ToastQueue;
 
 public class Toaster implements Runnable {
 	private ToastQueue toastQueue;
@@ -22,13 +22,13 @@ public class Toaster implements Runnable {
 				TimeUnit.MILLISECONDS.sleep(100 + rand.nextInt(500));
 				// 制作吐司
 				Toast t = new Toast(count++);
-				System.out.print(t);
+				System.out.println(t);
 				// 插入队列中
 				toastQueue.put(t);
 			}
 		} catch (InterruptedException e) {
-			System.out.print("Toaster interrupted");
+			System.out.println("Toaster interrupted");
 		}
-		System.out.print("Toaster off");
+		System.out.println("Toaster off");
 	}
 }
