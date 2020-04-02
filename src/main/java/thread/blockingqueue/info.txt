@@ -7,3 +7,44 @@
           这个例子中没有任何显示的同步（即使用Lock对象或者synchronized关键字的同步），因为同步由队列（其内部是同步的）和系统的设计隐式的管理了——每片Toast 在任何时刻都只有一个任务在操作。
           因为队列的阻塞，使得处理过程将被自动地挂起和恢复。
      BlockingQueue 产生的简化十分明显，在使用显示的wait() 和 nitifyAll() 时存在的类和类之间的耦合被消除了，因为每个类只和它的BlockingQueue 通信。
+     
+=================
+关于LinkedBlockingQueue 需要知道的：
+1.单向链表
+    static class Node<E> {
+        //节点的value
+        E item;
+        //下一个节点
+        Node<E> next;
+        Node(E x) { item = x; }
+    }
+
+2.LinkedBlockingQueue 记录了队列容量、节点数量、头尾节点、出队锁、入队锁
+    //队列容量
+    private final int capacity;
+
+    //当前队列元素数量
+    private final AtomicInteger count = new AtomicInteger();
+
+    //头节点，不存数据
+    transient Node<E> head;
+    //尾节点，便于入队
+    private transient Node<E> last;
+
+    //出队锁，只有take，poll方法会持有
+    private final ReentrantLock takeLock = new ReentrantLock();
+
+    //出队等待条件
+    private final Condition notEmpty = takeLock.newCondition();
+
+    //入队锁，只有put，offer会持有
+    private final ReentrantLock putLock = new ReentrantLock();
+
+    //入队等待条件
+    private final Condition notFull = putLock.newCondition();
+    
+3.put 与 take 是阻塞的; offer 与 poll 是非阻塞的。
+==> put() 在队尾插元素，如果队列满了则一直阻塞，直到队列非满或者被中断；
+==> take() 如果队列为空，则阻塞，直到被中断或不为空；
+==> 入队使用入队锁，出队使用出队锁
+==> 入队一般不用add，因为add 失败会抛出异常；
