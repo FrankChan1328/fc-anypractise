@@ -1,0 +1,17 @@
+为什么要用CompletionService?
+	当向Executor 提交批处理任务时，并且希望在它们完成后获得结果。
+	如果用FutureTask，你可以循环获取task，并用 future.get() 去获取结果，但是如果这个 task 没有完成，你就得阻塞在这里。
+	这个时效性不高，其实在很多场合，当你拿第一个任务结果时，此时结果并没有生成，但是却阻塞任务了。其实在阻塞第一个任务时，第二个task 往往早已经完成了。
+	显然这种情况下用 future task 是不合适的。
+
+JDK 对CompletionService 的解释？
+	* public interface CompletionService<V>
+	* A service that decouples the production of new asynchronous tasks from the consumption of the results of completed tasks. 
+	* 将新的异步任务的产生与对已完成的异步任务的结果的消费解耦开来。
+	
+	* producers submit tasks ;  consumers take 已经完成的 tasks, 并按完成的顺序作处理。
+	* 例如，CompletionService 可以用来管理异步 IO，执行读操作的任务作为程序或系统的一部分submit ，然后当完成读操作时，会在程序的不同部分执行其他操作，执行操作的顺序可能与所请求的顺序不同。
+	* 通常，CompletionService 依赖于一个单独的 Executor 来实际执行任务，在这种情况下，
+
+	* CompletionService 只管理一个内部完成队列。ExecutorCompletionService 类提供了此方法的一个实现。 
+	* 内存一致性效果：线程中向 CompletionService 提交任务之前的操作 happen-before 该任务执行的操作，后者依次 happen-before 紧跟在从对应 take() 成功返回的操作。 
