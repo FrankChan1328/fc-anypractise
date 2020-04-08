@@ -6,4 +6,13 @@
 2.java 没有bit 数据类型，所以无法指定定义一个bi [] bitset，
 	需要通过其它整形数据类型，比如long 结合一些位操作来间接实现。
 
-2.选择long数组作为BitSet的内部存储结构,所以BitSet的大小为long类型大小(64位)的整数倍。
+3.选择long数组作为BitSet的内部存储结构,所以BitSet的大小为long类型大小(64位)的整数倍。
+
+4.方法
+	cardinality()：BitSet 提供了一个 cardinality 方法，用于返回当前 BitSet 中被设置的位的个数, 这在一些去重统计等场景中十分有用。
+	nextClearBit()：BitSet 提供了 nextClearBit 用于返回从指定下标开始的第一个为 false 的下标。
+	clear()：清除整个BitSet
+	clear(int bitIndex)：单个位清除
+	clear(int fromIndex, int toIndex)：多个位清除
+	set(int bitIndex)：单个位设置
+	set(int fromIndex, int toIndex)：多个位设置
