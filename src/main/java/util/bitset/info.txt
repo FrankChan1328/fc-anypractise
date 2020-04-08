@@ -1,0 +1,9 @@
+关于bitset 需要知道的：
+
+1.BitSet 位图，也叫bit array/ bit map/ bit vector，
+	本质上是一个数组，但是数组中每个元素只能存储0 或1 两种值
+
+2.java 没有bit 数据类型，所以无法指定定义一个bi [] bitset，
+	需要通过其它整形数据类型，比如long 结合一些位操作来间接实现。
+
+2.选择long数组作为BitSet的内部存储结构,所以BitSet的大小为long类型大小(64位)的整数倍。
