@@ -4,7 +4,7 @@
 
 	2.调用者Invoker 与操作者 Receiver 通过command 实现解耦
 	
-	3.Command 里通常都会有Receiver
+	3.Command 里通常都会有Receiver,任何command 都不会独立存在，都是依托于Receiver
 
 录音机的例子：
 	小女孩茱丽(Julia)有一个盒式录音机，此录音机有播音(Play)、倒带(Rewind)和停止(Stop)功能，
