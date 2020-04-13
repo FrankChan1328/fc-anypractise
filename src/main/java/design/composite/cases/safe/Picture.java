@@ -3,9 +3,9 @@ package design.composite.cases.safe;
 import java.util.Vector;
 
 /**
- * 樹枝構件
+ * 树枝构件
  * <p>
- * 实现胃抽象构件所要求的方法，并且还额外提供了用于管理子对象聚集的一系列方法
+ * 实现抽象构件所要求的方法，并且还额外提供了用于管理子对象聚集的一系列方法
  *
  */
 public class Picture extends Graphics {
