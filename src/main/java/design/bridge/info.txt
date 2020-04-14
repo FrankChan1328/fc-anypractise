@@ -9,3 +9,8 @@
 		^                                          ^
 		|                                          |
 	RefinedAbstraction     ConcreteImplementorA       ConcreteImplementorB
+	
+策略模式与桥梁模式：
+	策略模式是关于计算方法封装的。
+	桥梁模式是关于怎样把抽象化角色和实现化角色的强耦合解除掉的。
+	
