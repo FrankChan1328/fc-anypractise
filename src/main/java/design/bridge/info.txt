@@ -1,0 +1,8 @@
+1.桥梁模式是对象的结构模式
+	也称作柄体(Handle and Body)模式或者接口(interface)模式。
+	
+2.结构图
+	Abstraction         <>----------->          Implementor
+		^                                          ^
+		|                                          |
+	RefinedAbstraction     ConcreteImplementorA       ConcreteImplementorB
