@@ -1,6 +1,6 @@
-package design.bridge.abstraction;
+package design.bridge.bridge.abstraction;
 
-import design.bridge.implementor.Implementor;
+import design.bridge.bridge.implementor.Implementor;
 
 /**
  * 抽象化角色

@@ -1,4 +1,4 @@
-package design.bridge.abstraction;
+package design.bridge.bridge.abstraction;
 
 /**
  * 修正抽象化角色

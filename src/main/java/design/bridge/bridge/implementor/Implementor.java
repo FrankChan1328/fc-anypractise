@@ -1,4 +1,4 @@
-package design.bridge.implementor;
+package design.bridge.bridge.implementor;
 
 /**
  * 实现化角色
