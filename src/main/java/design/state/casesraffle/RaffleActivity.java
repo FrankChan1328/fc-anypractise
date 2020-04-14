@@ -12,6 +12,7 @@ public class RaffleActivity {
 
 	// 奖品数量
 	int count = 0;
+	
 	// 四个属性，表示四种状态
 	State noRafflleState = new NoRaffleState(this);
 	State canRaffleState = new CanRaffleState(this);
