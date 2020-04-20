@@ -1,4 +1,4 @@
-package collection.list;
+package collectionandmap.collection.list;
 
 import java.util.ArrayList;
 import java.util.Collections;

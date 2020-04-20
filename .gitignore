@@ -3,3 +3,4 @@
 .classpath
 .settings
 target/
+.sts4-cache/classpath-data.json
