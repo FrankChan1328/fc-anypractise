@@ -1,0 +1,5 @@
+关于transient 需要知道的：
+	1）transient修饰的变量不能被序列化；
+	2）transient只作用于实现 Serializable 接口；
+	3）transient只能用来修饰普通成员变量字段；
+	4）不管有没有 transient 修饰，静态变量都不能被序列化；
