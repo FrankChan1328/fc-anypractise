@@ -17,7 +17,18 @@ import java.util.function.BiFunction;
 import java.util.function.Consumer;
 
 /**
- * LinkedHashMap相对于HashMap，增加了双链表的结果（即节点中增加了前后指针），其他处理逻辑与HashMap一致，同样也没有锁保护，多线程使用存在风险。
+ * 1.LinkedHashMap相对于HashMap，增加了双链表的结果（即节点中增加了前后指针），其他处理逻辑与HashMap一致，同样也没有锁保护，多线程使用存在风险。
+ * 
+ * 2.几点总结：
+ * 底层是散列表和双向链表
+ * 允许为null，不同步
+ * 插入的顺序是有序的(底层链表致使有序)
+ * 装载因子和初始容量对LinkedHashMap影响是很大的~
+ * 
+ * 3.LinkedHashMap可以设置两种遍历顺序
+ * 访问顺序（access-ordered）
+ * 插入顺序（insertion-ordered）
+ * 默认是插入顺序的
  * @param <K>
  * @param <V>
  */
@@ -42,7 +53,9 @@ public class LinkedHashMap<K, V> extends HashMap<K, V> implements Map<K, V> {
      */
 
     /**
-     * HashMap.Node subclass for normal LinkedHashMap entries.
+     * 继承自HashMap 的Node 节点，双向链表，包含前置指针和后置指针
+     * @param <K>
+     * @param <V>
      */
     static class Entry<K, V> extends HashMap.Node<K, V> {
         Entry<K, V> before, after;
@@ -100,13 +113,17 @@ public class LinkedHashMap<K, V> extends HashMap<K, V> implements Map<K, V> {
             a.before = dst;
     }
 
-    // overrides of HashMap hook methods
-
+    /**
+     * 初始化散列表和双向链表
+     */
     void reinitialize() {
         super.reinitialize();
         head = tail = null;
     }
 
+    /**
+     * 创建一个普通的entry，将entry 插入到双向链表的末尾，并返回entry
+     */
     Node<K, V> newNode(int hash, K key, V value, Node<K, V> e) {
         LinkedHashMap.Entry<K, V> p = new LinkedHashMap.Entry<K, V>(hash, key, value, e);
         linkNodeLast(p);
