@@ -1,0 +1,8 @@
+HashSet 初始化
+	* HashSet h = new HashSet(); 默认初始容量为16，默认加载因子为0.75
+	* HashSet h = new HashSet(int initialCapacity);  默认的0.75的loadFactor，指定容量大小的构造函数
+	* HashSet h = new HashSet(int initialCapacity, float loadFactor);
+	* HashSet h = new HashSet(Collection C);
+
+HashSet 的add
+	在加入新元素的时候返回true，加入重复元素的时候返回false
