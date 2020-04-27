@@ -1,14 +1,15 @@
-package thread.blockingqueue;
+package thread.queue.blockingqueue.linkedblockingqueue.producerandconsumer;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-import thread.blockingqueue.consumer.Eater;
-import thread.blockingqueue.producer.Butterer;
-import thread.blockingqueue.producer.Jammer;
-import thread.blockingqueue.producer.Toaster;
-import thread.blockingqueue.queue.ToastQueue;
+import thread.queue.blockingqueue.linkedblockingqueue.producerandconsumer.consumer.Eater;
+import thread.queue.blockingqueue.linkedblockingqueue.producerandconsumer.producer.Butterer;
+import thread.queue.blockingqueue.linkedblockingqueue.producerandconsumer.producer.Jammer;
+import thread.queue.blockingqueue.linkedblockingqueue.producerandconsumer.producer.Toaster;
+import thread.queue.blockingqueue.linkedblockingqueue.producerandconsumer.queue.ToastQueue;
+
 
 public class ToastOMatic {
 	public static void main(String[] args) throws Exception {

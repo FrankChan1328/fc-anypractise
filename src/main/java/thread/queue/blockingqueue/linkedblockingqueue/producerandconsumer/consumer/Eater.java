@@ -1,7 +1,7 @@
-package thread.blockingqueue.consumer;
+package thread.queue.blockingqueue.linkedblockingqueue.producerandconsumer.consumer;
 
-import thread.blockingqueue.queue.Toast;
-import thread.blockingqueue.queue.ToastQueue;
+import thread.queue.blockingqueue.linkedblockingqueue.producerandconsumer.queue.Toast;
+import thread.queue.blockingqueue.linkedblockingqueue.producerandconsumer.queue.ToastQueue;
 
 public class Eater implements Runnable {
 	private ToastQueue finishedQueue;

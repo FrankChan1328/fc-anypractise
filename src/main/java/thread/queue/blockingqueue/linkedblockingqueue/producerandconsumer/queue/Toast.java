@@ -1,4 +1,4 @@
-package thread.blockingqueue.queue;
+package thread.queue.blockingqueue.linkedblockingqueue.producerandconsumer.queue;
 
 public class Toast {
 	public enum Status {

@@ -1,10 +1,10 @@
-package thread.blockingqueue.producer;
+package thread.queue.blockingqueue.linkedblockingqueue.producerandconsumer.producer;
 
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
-import thread.blockingqueue.queue.Toast;
-import thread.blockingqueue.queue.ToastQueue;
+import thread.queue.blockingqueue.linkedblockingqueue.producerandconsumer.queue.Toast;
+import thread.queue.blockingqueue.linkedblockingqueue.producerandconsumer.queue.ToastQueue;
 
 public class Toaster implements Runnable {
 	private ToastQueue toastQueue;
