@@ -17,6 +17,11 @@ import com.github.shyiko.mysql.binlog.event.deserialization.EventDeserializer;
  * 读取超大文件
  */
 public class ReadBigFile {
+    
+    public static void main(String [] args) throws IOException{
+        readBinLog();
+    }
+    
     /**
      * 方法一：使用BufferedReader 读写超大文件
      * <p>
@@ -39,20 +44,20 @@ public class ReadBigFile {
      * 方法二：使用RandomAccessFile 读取N G的msql bin 文件
      */
     public static void readBinLog() throws IOException {
-        String filePath = "D:\\tmp\\mysql-bin.000917";
+        String filePath = "E:\\tmp\\mysql-bin.002699";
         File binlogFile = new File(filePath);
         EventDeserializer eventDeserializer = new EventDeserializer();
         eventDeserializer.setChecksumType(ChecksumType.CRC32);
         BinaryLogFileReader reader = new BinaryLogFileReader(binlogFile, eventDeserializer);
         for (Event event; (event = reader.readEvent()) != null;) {
-            System.out.println(event.toString());
+//            System.out.println(event.toString());
             write(event.toString());
         }
         reader.close();
     }
 
     public static void write(String content) throws IOException {
-        String tt = "D:\\tmp\\mysql-bin.000917.txt";
+        String tt = "E:\\tmp\\mysql-bin.002699.txt";
         // 打开一个随机访问文件流，按读写方式
         RandomAccessFile randomFile = new RandomAccessFile(tt, "rw");
         // 文件长度,字节数
