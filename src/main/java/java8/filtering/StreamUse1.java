@@ -29,6 +29,26 @@ public class StreamUse1 {
                 .limit(3)
                 .collect(toList());
                 System.out.println(names);
+                
+//                List<Dish> dishes = menu.stream()
+//                        .filter(d -> d.getCalories() > 300)
+//                        .limit(3)
+//                        .collect(toList());
+                
+                List<Dish> dishes = menu.stream()
+                        .filter(d -> d.getCalories() > 300)
+                        .skip(2)
+                        .collect(toList());
+                
+                List<String> dishNames = menu.stream()
+                        .map(Dish::getName)
+                        .collect(toList());
+                
+                List<Integer> dishNameLengths = menu.stream()
+                        .map(Dish::getName)
+                        .map(String::length)
+                        .collect(toList());
+                
     }
     
     public static void streamOnece(){
