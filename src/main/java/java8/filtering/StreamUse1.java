@@ -5,6 +5,7 @@ import static java.util.stream.Collectors.toList;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 public class StreamUse1 {
@@ -49,6 +50,24 @@ public class StreamUse1 {
                         .map(String::length)
                         .collect(toList());
                 
+                if(menu.stream().anyMatch(Dish::isVegetarian)){
+                    System.out.println("The menu is (somewhat) vegetarian friendly!!");
+                    }
+                
+                
+                
+                boolean isHealthy = menu.stream()
+                        .noneMatch(d -> d.getCalories() >= 1000);
+                
+                Optional<Dish> dish =
+                        menu.stream()
+                        .filter(Dish::isVegetarian)
+                        .findAny();
+                
+                menu.stream()
+                .filter(Dish::isVegetarian)
+                .findAny()
+                .ifPresent(d -> System.out.println(d.getName()));
     }
     
     public static void streamOnece(){
