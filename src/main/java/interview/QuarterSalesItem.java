@@ -16,6 +16,4 @@ public class QuarterSalesItem {
 	public void setValue(double value) {
 		this.value = value;
 	}
-	
-	
 }
