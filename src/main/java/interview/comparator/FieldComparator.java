@@ -9,9 +9,6 @@ import interview.Extension;
  * 按属性自然排序
  */
 public class FieldComparator implements Comparator<Extension> {
-
-    public static final String NULL_STR = "null";
-
     private String field;
 
     public FieldComparator(String field) {
@@ -24,8 +21,13 @@ public class FieldComparator implements Comparator<Extension> {
 
     @Override
     public int compare(Extension o1, Extension o2) {
-        String o1Value = MethodHandler.getMethodValue(o1, field, NULL_STR);
-        String o2Value = MethodHandler.getMethodValue(o2, field, NULL_STR);
+        String o1Value = MethodHandler.getValue(o1, field);
+        String o2Value = MethodHandler.getValue(o2, field);
+        
+        if (null == o1Value || null == o2Value) {
+            return null == o1Value ? ((null == o2Value) ? 0 : 1) : -1;
+        }
+        
         return o1Value.compareTo(o2Value);
     }
 
@@ -39,11 +41,6 @@ public class FieldComparator implements Comparator<Extension> {
          */
         public static <T, E> E getValue(T object, String field) {
             return getMethodValue(object, getMethodName(field));
-        }
-
-        public static <T, E> E getMethodValue(T object, String field, E nullValue) {
-            E value = getValue(object, field);
-            return null == value ? nullValue : value;
         }
 
         private static String getMethodName(String field) {

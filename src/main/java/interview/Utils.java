@@ -7,8 +7,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collector;
 
 import interview.cal.CalStrategy;
@@ -72,11 +74,24 @@ public class Utils {
         if (null == allKeys || allKeys.length == 0) {
             return null;
         }
+
         if (null == usedKeys || usedKeys.length == 0) {
             return allKeys;
         }
         
-		return null;
+        Set<Integer> sets = new HashSet<>();
+        for (int i = 0; i < usedKeys.length; i++) {
+            sets.add(usedKeys[i]);
+        }
+
+        int index = 0;
+        for (int i = 0; i < allKeys.length; i++) {
+            if (!sets.contains(allKeys[i])) {
+                allKeys[index] = allKeys[i];
+                index++;
+            }
+        }
+        return Arrays.copyOfRange(allKeys, 0, index);
 	}
 	
 }

@@ -27,12 +27,14 @@ public class CalStrategy {
         this.calCollector = calCollector;
     }
 
+    @SuppressWarnings("unchecked")
     public List<QuarterSalesItem> cal() {
         List<QuarterSalesItem> result = new ArrayList<>();
         if (null != saleItems && saleItems.size() > 0) {
             Map<Integer, List<SaleItem>> map = saleItems.stream().collect(groupingBy(groupFunction));
-
             map.forEach((k, v) -> {
+                Object obj = v.stream().collect(calCollector);
+                System.out.println(obj);
                 double value = (double) v.stream().collect(calCollector);
                 result.add(getQuarterSalesItem(k, value));
             });

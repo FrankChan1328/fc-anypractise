@@ -29,8 +29,13 @@ public class FieldOrderSetComparator extends FieldComparator {
 
     @Override
     public int compare(Extension o1, Extension o2) {
-        String o1Str = MethodHandler.getMethodValue(o1, getField(), NULL_STR);
-        String o2Str = MethodHandler.getMethodValue(o2, getField(), NULL_STR);
+        String o1Str = MethodHandler.getValue(o1, getField());
+        String o2Str = MethodHandler.getValue(o2, getField());
+        
+        if (null == o1Str || null == o2Str) {
+            return null == o1Str ? ((null == o2Str) ? 0 : 1) : -1;
+        }
+
         Integer o1Value = PRIORITY_MAP.containsKey(o1Str) ? PRIORITY_MAP.get(o1Str) : MAP_NO_STR_VALUE;
         Integer o2Value = PRIORITY_MAP.containsKey(o2Str) ? PRIORITY_MAP.get(o2Str) : MAP_NO_STR_VALUE;
         if (MAP_NO_STR_VALUE.equals(o1Value) && MAP_NO_STR_VALUE.equals(o2Value)) {
