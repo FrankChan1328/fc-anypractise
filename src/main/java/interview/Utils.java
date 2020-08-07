@@ -58,7 +58,8 @@ public class Utils {
 
     // Question4
     public static List<QuarterSalesItem> maxByQuarter(List<SaleItem> saleItems) {
-        Collector<SaleItem, ?, Optional<SaleItem>> maxCollector = maxBy(Comparator.comparingDouble(SaleItem::getSaleNumbers));
+        Comparator<SaleItem> comparator = Comparator.comparingDouble(SaleItem::getSaleNumbers);
+        Collector<SaleItem, ?, Optional<SaleItem>> maxCollector = maxBy(comparator);
         CalStrategy cal = new CalStrategy(saleItems, maxCollector);
         return cal.cal();
     }
