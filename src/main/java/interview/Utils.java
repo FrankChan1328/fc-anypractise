@@ -14,6 +14,9 @@ import java.util.Set;
 import java.util.stream.Collector;
 
 import interview.cal.CalStrategy;
+import interview.cal.MaxStrategy;
+import interview.cal.SalesContext;
+import interview.cal.SumStrategy;
 import interview.comparator.FieldComparator;
 import interview.comparator.FieldOrderSetComparator;
 import interview.comparator.MultiComparator;
@@ -51,16 +54,15 @@ public class Utils {
 	
     // Question3
     public static List<QuarterSalesItem> sumByQuarter(List<SaleItem> saleItems) {
-        Collector<SaleItem, ?, Double> sumCollector = summingDouble(SaleItem::getSaleNumbers);
-        CalStrategy cal = new CalStrategy(saleItems, sumCollector);
+        CalStrategy strategy = new SumStrategy();
+        SalesContext cal = new SalesContext(saleItems, strategy);
         return cal.cal();
     }
 
     // Question4
     public static List<QuarterSalesItem> maxByQuarter(List<SaleItem> saleItems) {
-        Comparator<SaleItem> comparator = Comparator.comparingDouble(SaleItem::getSaleNumbers);
-        Collector<SaleItem, ?, Optional<SaleItem>> maxCollector = maxBy(comparator);
-        CalStrategy cal = new CalStrategy(saleItems, maxCollector);
+        CalStrategy strategy = new MaxStrategy();
+        SalesContext cal = new SalesContext(saleItems, strategy);
         return cal.cal();
     }
     
