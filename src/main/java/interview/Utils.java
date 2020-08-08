@@ -1,18 +1,12 @@
 package interview;
 
-import static java.util.stream.Collectors.maxBy;
-import static java.util.stream.Collectors.summingDouble;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
-import java.util.stream.Collector;
-
 import interview.cal.CalStrategy;
 import interview.cal.MaxStrategy;
 import interview.cal.SalesContext;
