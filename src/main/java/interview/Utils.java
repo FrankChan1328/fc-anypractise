@@ -1,16 +1,19 @@
 package interview;
 
+import static java.util.stream.Collectors.maxBy;
+import static java.util.stream.Collectors.summingDouble;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collector;
+
 import interview.cal.CalStrategy;
-import interview.cal.MaxStrategy;
-import interview.cal.SalesContext;
-import interview.cal.SumStrategy;
 import interview.comparator.FieldComparator;
 import interview.comparator.FieldOrderSetComparator;
 import interview.comparator.MultiComparator;
@@ -48,15 +51,16 @@ public class Utils {
 	
     // Question3
     public static List<QuarterSalesItem> sumByQuarter(List<SaleItem> saleItems) {
-        CalStrategy strategy = new SumStrategy();
-        SalesContext cal = new SalesContext(saleItems, strategy);
+        Collector<SaleItem, ?, Double> sumCollector = summingDouble(SaleItem::getSaleNumbers);
+        CalStrategy cal = new CalStrategy(saleItems, sumCollector);
         return cal.cal();
     }
 
     // Question4
     public static List<QuarterSalesItem> maxByQuarter(List<SaleItem> saleItems) {
-        CalStrategy strategy = new MaxStrategy();
-        SalesContext cal = new SalesContext(saleItems, strategy);
+        Comparator<SaleItem> comparator = Comparator.comparingDouble(SaleItem::getSaleNumbers);
+        Collector<SaleItem, ?, Optional<SaleItem>> maxCollector = maxBy(comparator);
+        CalStrategy cal = new CalStrategy(saleItems, maxCollector);
         return cal.cal();
     }
     

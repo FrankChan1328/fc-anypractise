@@ -1,17 +1,4 @@
-/**
- * @(#)LastNameComparator.java 2019-12-25
- * 
- * Copyright 2000-2019 by ChinanetCenter Corporation.
- *
- * All rights reserved.
- *
- * This software is the confidential and proprietary information of
- * ChinanetCenter Corporation ("Confidential Information").  You
- * shall not disclose such Confidential Information and shall use
- * it only in accordance with the terms of the license agreement
- * you entered into with ChinanetCenter.
- * 
- */
+
 package rctest.comparator.extension;
 
 import rctest.Extension;
