@@ -9,22 +9,10 @@ public class Handler {
     
     public static void main(String[] args) throws Exception {
         List<Lot> lots = getLots();
+//        int term = 22102;
+//        PredictFUtil.printF(lots, term, 5);
         
-        
-        
-        PredictUtil.calEHitSeq(lots, 1);
-        
-        
-
-//        int term = 22108;
-//
-////        PredictUtil.printE(lots,term,  2);
-////        PredictUtil.foo(lots, 2);
-//        
-//        PredictUtil.printE(lots,term, 1);
-//        System.out.println("");
-//        int result = PredictUtil.getHitSeq(lots, term, 1);
-//        System.out.println(result);
+        PredictFUtil.calEHitSeq(lots, 1);
     }
     
     public static List<Lot> getLots() throws Exception{

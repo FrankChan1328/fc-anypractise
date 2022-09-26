@@ -66,6 +66,23 @@ public class Lot {
     public int getE(int index) {
         return index == 1 ? e01 : e02;
     }
+    
+    public int getF(int index) {
+        if (index == 1) {
+            return f01;
+        }
+        if (index == 2) {
+            return f02;
+        }
+        if (index == 3) {
+            return f03;
+        }
+        if (index == 4) {
+            return f04;
+        }
+        return f05;
+    }
+
 
     public int getE01() {
         return e01;
