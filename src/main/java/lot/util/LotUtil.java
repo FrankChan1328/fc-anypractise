@@ -68,7 +68,7 @@ public class LotUtil {
         return list;
     }
     
-    private static String getTotal(Lot lot) {
+    public static String getTotal(Lot lot) {
         StringBuilder sb = new StringBuilder();
         sb.append(str(lot.getF01()));
         sb.append(str(lot.getF02()));
