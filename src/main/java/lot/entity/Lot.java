@@ -62,6 +62,10 @@ public class Lot {
     public void setF05(int f05) {
         this.f05 = f05;
     }
+    
+    public int getE(int index) {
+        return index == 1 ? e01 : e02;
+    }
 
     public int getE01() {
         return e01;
