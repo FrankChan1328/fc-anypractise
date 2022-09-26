@@ -106,6 +106,6 @@ public class PredictFUtil {
                 nextPros.add(new NumProbability(k, frequency2));
             }
         }
-        return numPros;
+        return numPros.stream().sorted(Comparator.comparing(NumProbability::getProbability).reversed()).collect(Collectors.toList());
     }
 }

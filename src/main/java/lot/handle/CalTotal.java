@@ -66,8 +66,10 @@ public class CalTotal {
     private static int filter(List<NumProbability> sourceNums, List<Integer> list) {
         int size = sourceNums.size();
         int max = list.size() == 0 ? 0 : list.get(list.size() - 1);
-        List<NumProbability> nums = sourceNums.size() > 4 ? sourceNums.subList(0, size - 2) : sourceNums;
+//        List<NumProbability> nums = sourceNums.size() > 4 ? sourceNums.subList(0, size - 2) : sourceNums;
 
+        List<NumProbability> nums = sourceNums;
+        
         List<NumProbability> result = nums.stream().filter(it -> it.getProbability() > 0.)
                 .filter(it -> !list.contains(it.getNum()) && it.getNum() > max).collect(Collectors.toList());
 
