@@ -69,6 +69,17 @@ public class PredictFUtil {
         });
     }
     
+    /**
+     * 精准寻找某个数字之后的预期
+     */
+    public static List<NumProbability> getPredictFNextTerm(List<Lot> totalLots, int term, int fIndex) {
+        Lot lot = totalLots.stream().filter(it -> it.getTerm() == term).findFirst().get();
+        NumProbability numPro = predictFNextTerm(totalLots, term, fIndex).stream().filter(it -> it.getNum() == lot.getF(fIndex))
+                .findFirst().get();
+        return numPro.getNextPros().stream().sorted(Comparator.comparing(NumProbability::getProbability).reversed())
+                .collect(Collectors.toList());
+    }
+    
     public static List<NumProbability> predictFNextTerm(List<Lot> totalLots, int term, int fIndex) {
         List<Lot> lots = totalLots.stream().filter(it -> term > 0 && it.getTerm() <= term).collect(Collectors.toList());
         int total = lots.size();

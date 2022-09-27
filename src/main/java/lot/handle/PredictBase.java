@@ -9,6 +9,75 @@ import java.util.stream.Collectors;
 import lot.entity.Lot;
 
 public class PredictBase {
+    
+    /**
+     * 重复性计算
+     */
+    public static void repeat2(List<Lot> lots) {
+        List<Lot> repeat = lots.stream().filter(it -> it.eInF()).collect(Collectors.toList());
+        Double perc = getPercentage(repeat.size(), lots.size());
+        System.out.println(perc);
+    }
+    
+    /**
+     * 重复性计算
+     */
+    public static void repeat01(List<Lot> lots) {
+        List<Lot> repeat = lots.stream().filter(it -> it.e01InF()).collect(Collectors.toList());
+        Double perc = getPercentage(repeat.size(), lots.size());
+        System.out.println(perc);
+    }
+    
+    /**
+     * 重复性计算
+     */
+    public static void repeatBoth(List<Lot> lots) {
+        List<Lot> repeat = lots.stream().filter(it -> it.e01InF() && it.e02InF()).collect(Collectors.toList());
+        Double perc = getPercentage(repeat.size(), lots.size());
+        System.out.println(perc);
+    }
+    
+    /**
+     * 重复性计算
+     */
+    public static void repeat02(List<Lot> lots) {
+        List<Lot> repeat = lots.stream().filter(it -> it.e02InF()).collect(Collectors.toList());
+        Double perc = getPercentage(repeat.size(), lots.size());
+        System.out.println(perc);
+    }
+    
+    /**
+     * 本次重复，下次继续重复的概率
+     */
+    public static void repeatRepeat(List<Lot> lots) {
+        int count = 0;
+        for (int i = 0; i < lots.size() - 1; i++) {
+            Lot current = lots.get(i);
+            Lot next = lots.get(i + 1);
+            if (current.eInF() && next.eInF()) {
+                count++;
+            }
+        }
+        Double perc = getPercentage(count, lots.size());
+        System.out.println(perc);
+    }
+    
+    /**
+     * 本次重复，下次重复的概率
+     */
+    public static void nonRepeatRepeat(List<Lot> lots) {
+        int count = 0;
+        for (int i = 0; i < lots.size() - 1; i++) {
+            Lot current = lots.get(i);
+            Lot next = lots.get(i + 1);
+            if (!current.eInF() && next.eInF()) {
+                count++;
+            }
+        }
+        Double perc = getPercentage(count, lots.size());
+        System.out.println(perc);
+    }
+
     /**
      * 获得指定term 的下一期
      */

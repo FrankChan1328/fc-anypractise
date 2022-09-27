@@ -108,6 +108,20 @@ public class Lot {
         this.total = total;
     }
     
+    public boolean e01InF() {
+        return getE01() == getF01() || getE01() == getF02() || getE01() == getF03() || getE01() == getF04()
+                || getE01() == getF05();
+    }
+
+    public boolean e02InF() {
+        return getE02() == getF01() || getE02() == getF02() || getE02() == getF03() || getE02() == getF04()
+                || getE02() == getF05();
+    }
+
+    public boolean eInF() {
+        return e01InF() || e02InF();
+    }
+
     @Override
     public String toString() {
         return this.term +" " + this.total;

@@ -69,6 +69,21 @@ public class PredictUtil {
         });
     }
     
+    /**
+     * 精准寻找某一期某个位置，往后推测
+     * @param totalLots
+     * @param term
+     * @param eIndex
+     * @return
+     */
+    public static List<NumProbability> getPredictENextTerm(List<Lot> totalLots, int term, int eIndex) {
+        Lot lot = totalLots.stream().filter(it -> it.getTerm() == term).findFirst().get();
+        NumProbability numPro = predictENextTerm(totalLots, term, eIndex).stream()
+                .filter(it -> it.getNum() == lot.getE(eIndex)).findFirst().get();
+        return numPro.getNextPros().stream().sorted(Comparator.comparing(NumProbability::getProbability).reversed())
+                .collect(Collectors.toList());
+    }
+    
     public static List<NumProbability> predictENextTerm(List<Lot> totalLots, int term, int eIndex) {
         List<Lot> lots = totalLots.stream().filter(it -> term > 0 && it.getTerm() <= term).collect(Collectors.toList());
         int total = lots.size();

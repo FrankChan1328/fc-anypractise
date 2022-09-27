@@ -14,27 +14,27 @@ public class CalTotal {
         while(true) {
             list = Lists.newArrayList();
             // 前区
-            List<NumProbability> f01 = PredictFUtil.predictFNextTerm(lots, term, 1);
+            List<NumProbability> f01 = PredictFUtil.getPredictFNextTerm(lots, term, 1);
             int n01 = filter(f01, list);
             list.add(n01);
             
-            List<NumProbability> f02 = PredictFUtil.predictFNextTerm(lots, term, 2);
+            List<NumProbability> f02 = PredictFUtil.getPredictFNextTerm(lots, term, 2);
             list.add(filter(f02, list));
-            List<NumProbability> f03 = PredictFUtil.predictFNextTerm(lots, term, 3);
+            List<NumProbability> f03 = PredictFUtil.getPredictFNextTerm(lots, term, 3);
             int n03 = filter(f03, list);
             if(n03 ==0) {
                 continue;
             }
             list.add(n03);
             
-            List<NumProbability> f04 = PredictFUtil.predictFNextTerm(lots, term, 4);
+            List<NumProbability> f04 = PredictFUtil.getPredictFNextTerm(lots, term, 4);
             int n04 = filter(f04, list);
             if(n04 ==0) {
                 continue;
             }
             list.add(n04);
             
-            List<NumProbability> f05 = PredictFUtil.predictFNextTerm(lots, term, 4);
+            List<NumProbability> f05 = PredictFUtil.getPredictFNextTerm(lots, term, 4);
             int n05 = filter(f05, list);
             if(n05 ==0) {
                 continue;
@@ -43,14 +43,14 @@ public class CalTotal {
             
             List<Integer> list2 = Lists.newArrayList();
             // 后区
-            List<NumProbability> e01 = PredictUtil.predictENextTerm(lots, term, 1);
-            int ne01 = filter(e01, list2);
+            List<NumProbability> e01 = PredictUtil.getPredictENextTerm(lots, term, 1);
+            int ne01 = filter2(e01, list2);
             if(ne01 ==0) {
                 continue;
             }
             list2.add(ne01);
-            List<NumProbability> e02 = PredictUtil.predictENextTerm(lots, term, 2);
-            int ne02 = filter(e02, list2);
+            List<NumProbability> e02 = PredictUtil.getPredictENextTerm(lots, term, 2);
+            int ne02 = filter2(e02, list2);
             if(ne02 ==0) {
                 continue;
             }
@@ -66,9 +66,9 @@ public class CalTotal {
     private static int filter(List<NumProbability> sourceNums, List<Integer> list) {
         int size = sourceNums.size();
         int max = list.size() == 0 ? 0 : list.get(list.size() - 1);
-//        List<NumProbability> nums = sourceNums.size() > 4 ? sourceNums.subList(0, size - 2) : sourceNums;
+        List<NumProbability> nums = sourceNums.size() > 4 ? sourceNums.subList(2, size - 2) : sourceNums;
 
-        List<NumProbability> nums = sourceNums;
+//        List<NumProbability> nums = sourceNums;
         
         List<NumProbability> result = nums.stream().filter(it -> it.getProbability() > 0.)
                 .filter(it -> !list.contains(it.getNum()) && it.getNum() > max).collect(Collectors.toList());
@@ -83,6 +83,28 @@ public class CalTotal {
         
         int random = 0 + (int) (Math.random() * (result.size() + 1));
         int index = random < result.size() ? random : result.size() - 1;
+        //
+        return result.get(index).getNum();
+    }
+    
+    private static int filter2(List<NumProbability> sourceNums, List<Integer> list) {
+        int max = list.size() == 0 ? 0 : list.get(list.size() - 1);
+        List<NumProbability> nums = sourceNums.size() > 2 ? sourceNums.subList(0, sourceNums.size() - 2) : sourceNums;
+        
+        List<NumProbability> result = nums.stream().filter(it -> it.getProbability() > 0.)
+                .filter(it -> !list.contains(it.getNum()) && it.getNum() > max).collect(Collectors.toList());
+
+        if(result.size() == 1) {
+            return result.get(0).getNum();
+        }
+        
+        if(result.size() == 0) {
+            return 0;
+        }
+        
+        int random = 0 + (int) (Math.random() * (result.size() + 1));
+        int index = random < result.size() ? random : result.size() - 1;
+        
         //
         return result.get(index).getNum();
     }
