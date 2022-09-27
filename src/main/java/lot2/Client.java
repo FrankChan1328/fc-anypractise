@@ -1,47 +1,37 @@
-package lot.handle;
+package lot2;
 
 import java.util.Comparator;
 import java.util.List;
 import lot.entity.Lot;
-import lot.util.LotUtil;
+import lot2.pre.BaseUtil;
+import lot2.pre.CalTotal;
+import lot2.util.LotUtil;
 
-public class Handler {
-    
+public class Client {
+
     public static void main(String[] args) throws Exception {
         List<Lot> lots = getLots();
-        int term = 22110;
         
+//        PredictUtil.printPosibility(lots, 2, ColType.E01);
         
-//        PredictBase.nonRepeatRepeat(lots);
+//        PredictUtil.getHitSeq(lots, 22109, ColType.E01);
         
+//        int seq = PredictUtil.getHitSeq(lots, 22108, 2, ColType.E01);
+//        System.out.println(seq);
         
-//        predictE(lots, term);
-        
-        predictAll(lots, term);
-        
-        PredictOldUtil.printOldPredict(lots, term, term, term);
-        
-//        testAll(lots, term);
-    }
-    
-    public static void predictE(List<Lot> lots, int term) {
-        PredictUtil.printE(lots, term, 1);
-        PredictUtil.printE(lots, term, 2);
-    }
-    
-    public static void predictAll(List<Lot> lots, int term) {
-        List<Integer> results = CalTotal.getCalResults(lots, term);
-        System.out.println(results);
+        testAll(lots, 22107);
     }
     
     public static void testAll(List<Lot> lots, int term) {
-        int nextTerm = PredictBase.getNextTerm(lots, term);
+        int nextTerm = BaseUtil.getNextTerm(lots, term);
         Lot nextLot = lots.stream().filter(it -> it.getTerm() == nextTerm).findFirst().get();
         
         int count = 0;
         while (true) {
             count ++;
+            
             List<Integer> results = CalTotal.getCalResults(lots, term);
+            
             Lot lot = new Lot();
             lot.setF01(results.get(0));
             lot.setF02(results.get(1));
@@ -55,10 +45,6 @@ public class Handler {
             if(count < 0) {
                 
             }
-            if(lot.getE01() == nextLot.getE01()) {
-                
-            }
-            
             if(lot.getE01() == nextLot.getE01() && lot.getE02() == nextLot.getE02()) {
                 System.out.println("here12");
             }
@@ -68,7 +54,7 @@ public class Handler {
             }
         }
     }
-    
+
     public static List<Lot> getLots() throws Exception{
         String path = "E:\\dev\\fc-anypractise\\src\\main\\resources\\lot\\data.xlsx";
         List<Lot> lots = LotUtil.convert(path);

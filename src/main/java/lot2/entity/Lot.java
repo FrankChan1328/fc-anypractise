@@ -1,6 +1,4 @@
-package lot.entity;
-
-import lot2.entity.ColType;
+package lot2.entity;
 
 public class Lot {
     // 期数
@@ -85,28 +83,7 @@ public class Lot {
         return f05;
     }
 
-    public int get(ColType type) {
-        if (type.equals(ColType.F01)) {
-            return f01;
-        }
-        if (type.equals(ColType.F02)) {
-            return f02;
-        }
-        if (type.equals(ColType.F03)) {
-            return f03;
-        }
-        if (type.equals(ColType.F04)) {
-            return f04;
-        }
-        if (type.equals(ColType.F05)) {
-            return f05;
-        }
-        if (type.equals(ColType.E01)) {
-            return e01;
-        }
-        return e02;
-    }
-    
+
     public int getE01() {
         return e01;
     }
