@@ -8,9 +8,8 @@ import java.util.stream.Stream;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-
-import lot.entity.Lot;
-import lot.entity.NumProbability;
+import lott.entity.Lot;
+import lott.entity.NumProbability;
 
 public class PredictFUtil {
     

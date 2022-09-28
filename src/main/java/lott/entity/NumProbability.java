@@ -1,4 +1,4 @@
-package lot2.entity;
+package lott.entity;
 
 import java.util.List;
 

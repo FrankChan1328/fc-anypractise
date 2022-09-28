@@ -14,7 +14,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import com.google.common.collect.Lists;
 
-import lot.entity.Lot;
+import lott.entity.Lot;
 
 public class LotUtil {
     public static List<Lot> convert(String filepath) throws Exception {

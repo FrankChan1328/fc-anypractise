@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
-import lot.entity.Lot;
+import lott.entity.Lot;
 
 public class BaseUtil {
     
@@ -103,6 +103,18 @@ public class BaseUtil {
             }
         }
         int index = count < lots.size() - margin ? count + margin : count;
+        return lots.get(index).getTerm();
+    }
+    
+    public static int getBeforeTerm(List<Lot> lots, int margin, int term) {
+        int count = 0;
+        for (int i = 0; i < lots.size(); i++) {
+            if (lots.get(i).getTerm() == term) {
+                count = i;
+                break;
+            }
+        }
+        int index = count -margin;
         return lots.get(index).getTerm();
     }
     

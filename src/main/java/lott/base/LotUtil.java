@@ -1,7 +1,8 @@
-package lot2.util;
+package lott.base;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -14,9 +15,18 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import com.google.common.collect.Lists;
 
-import lot.entity.Lot;
+import lott.entity.Lot;
 
 public class LotUtil {
+    
+    public static List<Lot> getLots() throws Exception{
+        String path = "E:\\dev\\fc-anypractise\\src\\main\\resources\\lot\\data.xlsx";
+        List<Lot> lots = LotUtil.convert(path);
+        // 按期数排序
+        lots.sort(Comparator.comparing(Lot::getTerm));
+        return lots;
+    }
+    
     public static List<Lot> convert(String filepath) throws Exception {
         List<Lot> list = Lists.newArrayList();
         

@@ -2,7 +2,7 @@ package lot.handle;
 
 import java.util.Comparator;
 import java.util.List;
-import lot.entity.Lot;
+import lott.entity.Lot;
 import lot.util.LotUtil;
 
 public class Handler {

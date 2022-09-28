@@ -3,9 +3,9 @@ package lot2.pre;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
-import lot.entity.Lot;
-import lot.entity.NumProbability;
-import lot2.entity.ColType;
+import lott.entity.Lot;
+import lott.entity.NumProbability;
+import lott.entity.ColType;
 
 public class PredictUtil {
     

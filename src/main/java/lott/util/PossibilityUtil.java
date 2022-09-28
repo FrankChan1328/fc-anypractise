@@ -1,4 +1,4 @@
-package lot2.pre;
+package lott.util;
 
 import java.util.Comparator;
 import java.util.List;
@@ -17,7 +17,7 @@ public class PossibilityUtil {
     /**
      * 获取后区两个数字差值的分布
      */
-    public static List<NumProbability> calEMarginPosibility(List<Lot> lots) {
+    public static List<NumProbability> eMarginDist(List<Lot> lots) {
         List<NumProbability> result = Lists.newArrayList();
         List<Integer> list = lots.stream().map(it -> {
             return Math.abs(it.getE01() - it.getE02());

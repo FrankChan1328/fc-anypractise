@@ -1,6 +1,4 @@
-package lot.entity;
-
-import lot2.entity.ColType;
+package lott.entity;
 
 public class Lot {
     // 期数

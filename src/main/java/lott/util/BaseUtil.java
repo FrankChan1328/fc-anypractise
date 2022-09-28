@@ -1,4 +1,4 @@
-package lot.handle;
+package lott.util;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -8,22 +8,31 @@ import java.util.stream.Collectors;
 
 import lott.entity.Lot;
 
-public class PredictBase {
+public class BaseUtil {
     
     /**
-     * 重复性计算
+     * 检查后区两个至少一个与前区都重复的概率
      */
-    public static void repeat2(List<Lot> lots) {
+    public static void checkERepeat2(List<Lot> lots) {
         List<Lot> repeat = lots.stream().filter(it -> it.eInF()).collect(Collectors.toList());
         Double perc = getPercentage(repeat.size(), lots.size());
         System.out.println(perc);
     }
     
     /**
-     * 重复性计算
+     * 检查后区第一个与前区重复的概率
      */
-    public static void repeat01(List<Lot> lots) {
+    public static void checkERepeat01(List<Lot> lots) {
         List<Lot> repeat = lots.stream().filter(it -> it.e01InF()).collect(Collectors.toList());
+        Double perc = getPercentage(repeat.size(), lots.size());
+        System.out.println(perc);
+    }
+    
+    /**
+     * 检查后区第二个与前区重复的概率
+     */
+    public static void repeat02(List<Lot> lots) {
+        List<Lot> repeat = lots.stream().filter(it -> it.e02InF()).collect(Collectors.toList());
         Double perc = getPercentage(repeat.size(), lots.size());
         System.out.println(perc);
     }
@@ -36,15 +45,7 @@ public class PredictBase {
         Double perc = getPercentage(repeat.size(), lots.size());
         System.out.println(perc);
     }
-    
-    /**
-     * 重复性计算
-     */
-    public static void repeat02(List<Lot> lots) {
-        List<Lot> repeat = lots.stream().filter(it -> it.e02InF()).collect(Collectors.toList());
-        Double perc = getPercentage(repeat.size(), lots.size());
-        System.out.println(perc);
-    }
+
     
     /**
      * 本次重复，下次继续重复的概率
@@ -63,7 +64,7 @@ public class PredictBase {
     }
     
     /**
-     * 本次重复，下次重复的概率
+     * 本次重复，下次不重复的概率
      */
     public static void nonRepeatRepeat(List<Lot> lots) {
         int count = 0;
@@ -90,6 +91,30 @@ public class PredictBase {
             }
         }
         int index = count < lots.size() ? count + 1 : count;
+        return lots.get(index).getTerm();
+    }
+    
+    public static int getNextTerm(List<Lot> lots, int margin, int term) {
+        int count = 0;
+        for (int i = 0; i < lots.size(); i++) {
+            if (lots.get(i).getTerm() == term) {
+                count = i;
+                break;
+            }
+        }
+        int index = count < lots.size() - margin ? count + margin : count;
+        return lots.get(index).getTerm();
+    }
+    
+    public static int getBeforeTerm(List<Lot> lots, int margin, int term) {
+        int count = 0;
+        for (int i = 0; i < lots.size(); i++) {
+            if (lots.get(i).getTerm() == term) {
+                count = i;
+                break;
+            }
+        }
+        int index = count -margin;
         return lots.get(index).getTerm();
     }
     

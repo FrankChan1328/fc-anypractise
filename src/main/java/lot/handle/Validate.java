@@ -8,7 +8,7 @@ import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
 import java8.sw.ObjectEntity;
-import lot.entity.Lot;
+import lott.entity.Lot;
 import lot.util.LotUtil;
 
 public class Validate {

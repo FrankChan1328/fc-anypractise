@@ -5,8 +5,8 @@ import java.util.stream.Collectors;
 
 import com.google.common.collect.Lists;
 
-import lot.entity.Lot;
-import lot.entity.NumProbability;
+import lott.entity.Lot;
+import lott.entity.NumProbability;
 
 public class CalTotal {
     public static List<Integer> getCalResults(List<Lot> lots, int term) {

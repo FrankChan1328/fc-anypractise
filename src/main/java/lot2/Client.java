@@ -2,10 +2,12 @@ package lot2;
 
 import java.util.Comparator;
 import java.util.List;
-import lot.entity.Lot;
-import lot2.pre.BaseUtil;
+
+import lott.base.LotUtil;
+import lott.entity.Lot;
+import lott.entity.NumProbability;
 import lot2.pre.CalTotal;
-import lot2.util.LotUtil;
+import lot2.pre.PossibilityUtil;
 
 public class Client {
 
@@ -19,40 +21,15 @@ public class Client {
 //        int seq = PredictUtil.getHitSeq(lots, 22108, 2, ColType.E01);
 //        System.out.println(seq);
         
-        testAll(lots, 22107);
-    }
-    
-    public static void testAll(List<Lot> lots, int term) {
-        int nextTerm = BaseUtil.getNextTerm(lots, term);
-        Lot nextLot = lots.stream().filter(it -> it.getTerm() == nextTerm).findFirst().get();
+//        testAll(lots, 22107);
+//        List<NumProbability> result = PossibilityUtil.calEMarginPosibility(lots);
+//        result.forEach(it ->{
+//            System.out.println(it.getNum()+" "+ it.getProbability());
+//        });
         
-        int count = 0;
-        while (true) {
-            count ++;
-            
-            List<Integer> results = CalTotal.getCalResults(lots, term);
-            
-            Lot lot = new Lot();
-            lot.setF01(results.get(0));
-            lot.setF02(results.get(1));
-            lot.setF03(results.get(2));
-            lot.setF04(results.get(3));
-            lot.setF05(results.get(4));
-            lot.setE01(results.get(5));
-            lot.setE02(results.get(6));
-            lot.setTotal(LotUtil.getTotal(lot));
-            
-            if(count < 0) {
-                
-            }
-            if(lot.getE01() == nextLot.getE01() && lot.getE02() == nextLot.getE02()) {
-                System.out.println("here12");
-            }
-            
-            if(lot.getTotal().equals(nextLot.getTotal())) {
-                System.out.println("here");
-            }
-        }
+        CalTotal.foo(lots);
+//        int result = CalTotal.targetAll(lots, 22107);
+//        System.out.println(result);
     }
 
     public static List<Lot> getLots() throws Exception{
